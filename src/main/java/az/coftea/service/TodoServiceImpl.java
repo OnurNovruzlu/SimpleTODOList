@@ -28,7 +28,7 @@ public class TodoServiceImpl implements TodoService{
 
     @Override
     public TodoDto getTodo(int id) {
-        Todo todo=repository.getReferenceById(id);
+        Todo todo=repository.findById(id).orElse(null);
         return convertToDto(todo);
     }
 
@@ -46,7 +46,7 @@ public class TodoServiceImpl implements TodoService{
 
     @Override
     public void update(String name, int id) {
-    Todo todo=repository.getReferenceById(id);
+    Todo todo=repository.findById(id).orElse(null);
     todo.setName(name);
     repository.save(todo);
     }
